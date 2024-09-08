@@ -12,8 +12,6 @@ on:
 name: Deploy_Container_Workflow_Pipeline
 
 env:
-  AZURE_WEBAPP_NAME: nodejsapp009
-  AZURE_WEBAPP_PACKAGE_PATH: "./publish"
   AZURE_CREDENTIALS: >
     {
       "clientId": "a302eee6-e1a8-4965-a837-ee4098d7bfbc",
@@ -56,7 +54,7 @@ jobs:
           password: ${{ env.REGISTRY_PASSWORD }}
       
       - run: |
-          docker build . -t ${{ env.REGISTRY_LOGIN_SERVER }}/webapp:${{ github.sha }}
+          docker build ./WebApp -t ${{ env.REGISTRY_LOGIN_SERVER }}/webapp:${{ github.sha }}
           docker push ${{ env.REGISTRY_LOGIN_SERVER }}/webapp:${{ github.sha }}
       
       - name: 'Deploy to Azure Container Instances'
