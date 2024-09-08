@@ -9,6 +9,10 @@ on:
         description: 'Env & Container instance name, for e.g.= dev-aciapp08976, uat-aciapp08976 & DNS name label for the container instance'
         required: true
         default: 'uat-aciapp08976'
+      RG:
+        description: 'Enter Resource group name, e.g. Dev-RG, PRD-RG, UAT-RG'
+        required: true
+        default: 'Dev-RG'
 
 name: Deploy_Container_Workflow_Pipeline
 
@@ -29,7 +33,7 @@ env:
   REGISTRY_LOGIN_SERVER: azconreg05.azurecr.io
   REGISTRY_USERNAME: a302eee6-e1a8-4965-a837-ee4098d7bfbc
   REGISTRY_PASSWORD: 4YH8Q~nnGznr6lfXtqqy3VAwyS5KLivw1LU5HcRj
-  RESOURCE_GROUP: rg1
+  RESOURCE_GROUP: ${{ github.event.inputs.RG }} 
 
 jobs:
   build-and-deploy:
