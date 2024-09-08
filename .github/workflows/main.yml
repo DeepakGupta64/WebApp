@@ -15,7 +15,7 @@ env:
   AZURE_CREDENTIALS: >
     {
       "clientId": "a302eee6-e1a8-4965-a837-ee4098d7bfbc",
-      "clientSecret": "4YH8Q~nnGznr6lfXtqqy3VAwyS5KLivw1LU5HcRj",
+      "clientSecret": "***",
       "subscriptionId": "f8e09f37-d4cd-429e-bb19-a33cde7a7ca5",
       "tenantId": "5680e0f8-02a8-4545-afdb-bb7754f3002d",
       "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
@@ -38,7 +38,8 @@ jobs:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.branch || github.ref }}  # Use the input branch or fallback to triggering branch
+          ref: ${{ github.event.inputs.branch }}  # Ensure the correct branch is checked out
+          fetch-depth: 0  # Fetch the full history to ensure no issues with shallow fetch
 
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
