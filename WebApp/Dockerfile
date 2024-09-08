@@ -11,7 +11,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
 # Copy the project file and restore any dependencies
-COPY WebApp/WebApp.csproj WebApp/
+COPY ./WebApp/WebApp.csproj ./WebApp/
 RUN dotnet restore WebApp/WebApp.csproj
 
 # Copy the remaining files and build the application
