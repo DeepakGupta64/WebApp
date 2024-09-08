@@ -9,7 +9,7 @@ on:
         description: 'Env & Container instance name,for e.g.= dev-aciapp08976,uat-aciapp08976 & DNS name label for the container instance'
         required: true
 
-name: Linux_Container_Workflow
+name: Deploy_Container_Workflow_Pipeline
 
 env:
   AZURE_WEBAPP_NAME: nodejsapp009
