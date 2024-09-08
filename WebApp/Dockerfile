@@ -11,17 +11,17 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 
 # Copy the project file and restore any dependencies
-COPY ["WebApp/WebApp.csproj", "./WebApp/"]
-RUN dotnet restore "./WebApp/WebApp.csproj"
+COPY WebApp/WebApp.csproj WebApp/
+RUN dotnet restore WebApp/WebApp.csproj
 
 # Copy the remaining files and build the application
 COPY . .
-WORKDIR "/src/WebApp"
-RUN dotnet build "WebApp.csproj" -c Release -o /app/build
+WORKDIR /src/WebApp
+RUN dotnet build WebApp.csproj -c Release -o /app/build
 
 # Publish the application to the /app/publish directory
 FROM build AS publish
-RUN dotnet publish "WebApp.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish WebApp.csproj -c Release -o /app/publish /p:UseAppHost=false
 
 # Final image to run the app
 FROM base AS final
