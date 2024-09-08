@@ -6,7 +6,7 @@ on:
         required: true
         default: 'main'
       containerName:
-        description: 'Env & Container instance name,for e.g.= dev-aciapp08976,uat-aciapp08976 & DNS name label for the container instance'
+        description: 'Env & Container instance name, for e.g.= dev-aciapp08976, uat-aciapp08976 & DNS name label for the container instance'
         required: true
 
 name: Deploy_Container_Workflow_Pipeline
@@ -25,7 +25,6 @@ env:
       "galleryEndpointUrl": "https://gallery.azure.com/",
       "managementEndpointUrl": "https://management.core.windows.net/"
     }
-
   REGISTRY_LOGIN_SERVER: azconreg05.azurecr.io
   REGISTRY_USERNAME: a302eee6-e1a8-4965-a837-ee4098d7bfbc
   REGISTRY_PASSWORD: 4YH8Q~nnGznr6lfXtqqy3VAwyS5KLivw1LU5HcRj
@@ -35,11 +34,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the specified branch
+      # Checkout the specified branch or default to the current branch if triggered via another event
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.inputs.branch }}  # Use the input branch
+          ref: ${{ github.event.inputs.branch || github.ref }}  # Use the input branch or fallback to triggering branch
 
       - name: 'Login via Azure CLI'
         uses: azure/login@v1
