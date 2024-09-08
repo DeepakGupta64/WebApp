@@ -4,10 +4,11 @@ on:
       branch:
         description: 'Branch to build and deploy'
         required: true
-        default: 'main'
+        default: 'master'
       containerName:
         description: 'Env & Container instance name, for e.g.= dev-aciapp08976, uat-aciapp08976 & DNS name label for the container instance'
         required: true
+        default: 'uat-aciapp08976'
 
 name: Deploy_Container_Workflow_Pipeline
 
